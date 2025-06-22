@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudCFO.ai - Your AI-Powered CFO in the Cloud</title>
+    <meta name="description" content="AI-powered financial intelligence that thinks like a CFO but costs like an intern. Automate bookkeeping, track carbon footprint, and get CFO-level insights.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient-start: #11998e;
+            --primary-gradient-end: #38ef7d;
+            --accent-color: #667eea;
+            --text-dark: #1a1a1a;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --success-green: #10b981;
+            --carbon-green: #059669;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background: var(--bg-light);
+        }
+        
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-secondary {
+            color: var(--accent-color);
+            background: transparent;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(17, 153, 142, 0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(17, 153, 142, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(102, 126, 234, 0.05) 100%);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .trust-indicators {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .sustainability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(5, 150, 105, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--carbon-green);
+            font-weight: 600;
+        }
+        
+        /* Problem/Solution Strip */
+        .problem-solution {
+            background: var(--white);
+            padding: 4rem 2rem;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--bg-light);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-problem {
+            color: #ef4444;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-arrow {
+            font-size: 2rem;
+            color: var(--success-green);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-solution {
+            color: var(--success-green);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Value Propositions */
+        .value-props {
+            padding: 4rem 2rem;
+            background: var(--bg-light);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+        
+        .value-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .value-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .carbon-value {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border: 2px solid var(--carbon-green);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+        
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            width: 60px;
+            height: 60px;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .step-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Feature Sections */
+        .features {
+            padding: 4rem 2rem;
+            background: var(--bg-light);
+        }
+        
+        .feature {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .feature:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .feature:nth-child(even) .feature-content {
+            order: 2;
+        }
+        
+        .feature:nth-child(even) .feature-image {
+            order: 1;
+        }
+        
+        .feature-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .feature-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .feature-image {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent-color);
+        }
+        
+        .carbon-feature {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.1) 100%);
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 4rem auto;
+            max-width: 1200px;
+        }
+        
+        .carbon-feature h3 {
+            color: var(--carbon-green);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .carbon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .carbon-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .carbon-item h4 {
+            color: var(--carbon-green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+        
+        .pricing-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular {
+            background: linear-gradient(135deg, var(--white) 0%, rgba(102, 126, 234, 0.05) 100%);
+            border: 2px solid var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .pricing-tier {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .pricing-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-amount span {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+        
+        .pricing-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: bold;
+        }
+        
+        .carbon-feature-item {
+            color: var(--carbon-green) !important;
+            font-weight: 600;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 2rem;
+            background: var(--bg-light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+        
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-gradient-start);
+            font-weight: 700;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-outline-white:hover {
+            background: var(--white);
+            color: var(--primary-gradient-start);
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-copyright {
+            opacity: 0.7;
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--bg-light);
+                margin-top: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .feature:nth-child(even) .feature-content {
+                order: 1;
+            }
+            
+            .feature:nth-child(even) .feature-image {
+                order: 2;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .carbon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--carbon-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .new-badge {
+            display: inline-flex;
+            background: var(--success-green);
+            color: var(--white);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">CloudCFO.ai</a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <span class="nav-link">Product ▾</span>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">How It Works</a>
+                        <a href="#" class="dropdown-item">Features Overview</a>
+                        <a href="#" class="dropdown-item">AI Technology</a>
+                        <a href="#" class="dropdown-item">WhatsApp & Telegram Integration</a>
+                        <a href="#" class="dropdown-item">Carbon Accounting 🌱</a>
+                        <a href="#" class="dropdown-item">Mobile App</a>
+                        <a href="#" class="dropdown-item">Security & Compliance</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Solutions ▾</span>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">For Freelancers</a>
+                        <a href="#" class="dropdown-item">For Small Businesses</a>
+                        <a href="#" class="dropdown-item">For E-commerce & Marketplaces</a>
+                        <a href="#" class="dropdown-item">For Sustainable Businesses <span class="new-badge">NEW</span></a>
+                        <a href="#" class="dropdown-item">For Bookkeepers</a>
+                        <a href="#" class="dropdown-item">By Industry</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Integrations</a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Resources ▾</span>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Blog</a>
+                        <a href="#" class="dropdown-item">Help Center</a>
+                        <a href="#" class="dropdown-item">API Documentation</a>
+                        <a href="#" class="dropdown-item">Sustainability Guide 🌱</a>
+                        <a href="#" class="dropdown-item">Webinars & Tutorials</a>
+                        <a href="#" class="dropdown-item">Tax Deduction Guide</a>
+                        <a href="#" class="dropdown-item">ROI Calculator</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">Company ▾</span>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">About CloudCFO.ai</a>
+                        <a href="#" class="dropdown-item">Why AI Matters</a>
+                        <a href="#" class="dropdown-item">Our Sustainability Commitment</a>
+                        <a href="#" class="dropdown-item">Careers</a>
+                        <a href="#" class="dropdown-item">Press Kit</a>
+                    </div>
+                </li>
+                <div class="nav-cta">
+                    <a href="#" class="btn btn-secondary">Login</a>
+                    <a href="#" class="btn btn-primary">Start Free Trial</a>
+                </div>
+            </ul>
+            
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content animate-fade-in-up">
+            <h1>Your AI CFO Works 24/7 So You Don't Have To</h1>
+            <p class="hero-subtitle">CloudCFO.ai captures every receipt, finds every deduction, tracks carbon footprint, and delivers CFO-level insights—all powered by advanced AI</p>
+            
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">Start Free 14-Day Trial <span style="font-size: 0.9rem;">(No credit card required)</span></a>
+                <a href="#" class="btn btn-secondary">Watch 2-Min Demo</a>
+            </div>
+            
+            <div class="trust-indicators">
+                <span>Join 10,000+ businesses saving 8 hours/week</span>
+                <span class="sustainability-badge">🌱 Carbon-Conscious Platform</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem/Solution Strip -->
+    <section class="problem-solution">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-problem">8+ hours/week wasted on bookkeeping</div>
+                <div class="stat-arrow">↓</div>
+                <div class="stat-solution">Reduced to 30 minutes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-problem">$3,000+ in missed deductions annually</div>
+                <div class="stat-arrow">↓</div>
+                <div class="stat-solution">AI finds every deduction</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-problem">Shoebox full of receipts</div>
+                <div class="stat-arrow">↓</div>
+                <div class="stat-solution">Cloud-based organization</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-problem">Unknown carbon footprint</div>
+                <div class="stat-arrow">↓</div>
+                <div class="stat-solution">One-click carbon tracking</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Value Propositions -->
+    <section class="value-props">
+        <div class="section-header">
+            <h2 class="section-title">Why CloudCFO.ai is Different</h2>
+            <p class="section-subtitle">The only financial platform that combines AI intelligence with environmental consciousness</p>
+        </div>
+        
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="value-icon">🧠</div>
+                <h3 class="value-title">AI-Powered Intelligence</h3>
+                <p class="value-description">GPT-4 extraction with 99%+ accuracy</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📱</div>
+                <h3 class="value-title">Multi-Channel Capture</h3>
+                <p class="value-description">WhatsApp, Telegram, Email, Photo, API</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3 class="value-title">Real-Time Insights</h3>
+                <p class="value-description">CFO-level analytics updated instantly</p>
+            </div>
+            <div class="value-card carbon-value">
+                <div class="value-icon">🌱</div>
+                <h3 class="value-title">Carbon Accounting</h3>
+                <p class="value-description">Automatic carbon footprint per transaction</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔗</div>
+                <h3 class="value-title">Seamless Integration</h3>
+                <p class="value-description">Works with QuickBooks, Xero, and 30+ tools</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">How CloudCFO.ai Works</h2>
+            <p class="section-subtitle">From receipt to insights in seconds</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Capture</h3>
+                <p class="step-description">Send via WhatsApp, photo, or email</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3 class="step-title">AI Processing</h3>
+                <p class="step-description">Advanced extraction with GPT-4</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Categorization</h3>
+                <p class="step-description">Auto-sorting with IRS compliance</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Carbon Tracking</h3>
+                <p class="step-description">Environmental impact calculated</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <h3 class="step-title">CFO Insights</h3>
+                <p class="step-description">Financial & sustainability analytics</p>
+            </div>
+            <div class="step">
+                <div class="step-number">6</div>
+                <h3 class="step-title">Sync</h3>
+                <p class="step-description">Data flows to your accounting tools</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section class="features">
+        <div class="feature">
+            <div class="feature-content">
+                <h3>WhatsApp & Telegram Integration</h3>
+                <p>Send receipts as easily as texting a friend. Our bots process documents instantly and send confirmation right back to your chat.</p>
+                <ul class="feature-list">
+                    <li>Setup in under 2 minutes</li>
+                    <li>Real-time processing notifications</li>
+                    <li>Secure end-to-end encryption</li>
+                    <li>Works with images, PDFs, and forwards</li>
+                </ul>
+            </div>
+            <div class="feature-image">📱💬</div>
+        </div>
+        
+        <div class="feature">
+            <div class="feature-content">
+                <h3>AI-Powered Extraction</h3>
+                <p>Powered by GPT-4 and Computer Vision, our AI understands receipts like a human CFO, extracting every detail with 99%+ accuracy.</p>
+                <ul class="feature-list">
+                    <li>Handles crumpled, faded receipts</li>
+                    <li>Multi-language support</li>
+                    <li>Line-item extraction</li>
+                    <li>Confidence scoring on every field</li>
+                </ul>
+            </div>
+            <div class="feature-image">🤖✨</div>
+        </div>
+        
+        <!-- Carbon Accounting Feature -->
+        <div class="carbon-feature">
+            <h3>🌱 Carbon Accounting Integration</h3>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Track Your Business's Environmental Impact Automatically</p>
+            
+            <div class="carbon-grid">
+                <div class="carbon-item">
+                    <h4>Integrated Partners</h4>
+                    <p>Direct integration with Persefoni, Watershed, and Sphera for comprehensive carbon tracking</p>
+                </div>
+                <div class="carbon-item">
+                    <h4>One-Click Tracking</h4>
+                    <p>Carbon footprint calculated automatically for every transaction and product</p>
+                </div>
+                <div class="carbon-item">
+                    <h4>ESG Compliance</h4>
+                    <p>Meet marketplace sustainability requirements and generate compliance reports instantly</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">
+                "Essential for online marketplaces meeting sustainability requirements"
+            </p>
+        </div>
+        
+        <div class="feature">
+            <div class="feature-content">
+                <h3>Smart Categorization</h3>
+                <p>Our AI learns your business patterns and automatically categorizes expenses with IRS Schedule C compliance built-in.</p>
+                <ul class="feature-list">
+                    <li>IRS-compliant categories</li>
+                    <li>Carbon intensity mapping per category</li>
+                    <li>Machine learning from your patterns</li>
+                    <li>Custom rules and overrides</li>
+                </ul>
+            </div>
+            <div class="feature-image">📊🎯</div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Choose the plan that grows with your business</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-tier">CloudCFO Starter</h3>
+                <div class="pricing-amount">$29<span>/month</span></div>
+                <p class="pricing-description">Perfect for New Freelancers</p>
+                <ul class="pricing-features">
+                    <li>50 AI-processed documents</li>
+                    <li>1 bank connection</li>
+                    <li>Basic CFO insights</li>
+                    <li class="carbon-feature-item">Basic carbon tracking 🌱</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
+            </div>
+            
+            <div class="pricing-card popular">
+                <span class="popular-badge">MOST POPULAR</span>
+                <h3 class="pricing-tier">CloudCFO Pro</h3>
+                <div class="pricing-amount">$79<span>/month</span></div>
+                <p class="pricing-description">Ideal for Growing Businesses</p>
+                <ul class="pricing-features">
+                    <li>500 AI documents</li>
+                    <li>Unlimited banks</li>
+                    <li>Advanced AI insights</li>
+                    <li class="carbon-feature-item">Full carbon accounting 🌱</li>
+                    <li>WhatsApp & Telegram bots</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3 class="pricing-tier">CloudCFO Business</h3>
+                <div class="pricing-amount">$149<span>/month</span></div>
+                <p class="pricing-description">Built for Scaling E-commerce</p>
+                <ul class="pricing-features">
+                    <li>Unlimited AI processing</li>
+                    <li>Team access</li>
+                    <li>API access</li>
+                    <li class="carbon-feature-item">Enterprise carbon reporting 🌱</li>
+                    <li class="carbon-feature-item">ESG compliance tools 🌱</li>
+                    <li>Dedicated account manager</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about CloudCFO.ai</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does AI processing work?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>CloudCFO.ai uses advanced GPT-4 technology combined with computer vision to extract data from your receipts and invoices with 99%+ accuracy. The AI understands context, handles multiple languages, and improves over time by learning from your corrections.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I set up WhatsApp and Telegram integration?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Setting up is incredibly simple! Just scan a QR code or click a link to add our bot to your WhatsApp or Telegram. Once connected, you can send receipts just like you'd send a photo to a friend. Setup takes less than 2 minutes.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does carbon accounting work? 🌱
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>CloudCFO.ai automatically calculates the carbon footprint for every transaction based on the vendor, category, and amount. We integrate with leading carbon accounting platforms like Persefoni, Watershed, and Sphera to provide accurate environmental impact data. This helps you meet ESG reporting requirements and marketplace sustainability standards.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Which accounting software do you integrate with?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>CloudCFO.ai integrates with all major accounting platforms including QuickBooks, Xero, Sage, FreshBooks, Wave, and over 30 other tools. We also connect with 12,000+ banks through Plaid for automatic reconciliation.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is my data secure?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. CloudCFO.ai is SOC 2 Type II certified and GDPR compliant. All data is encrypted at rest and in transit using 256-bit encryption. We store your documents securely in the cloud for 10 years to meet IRS requirements, and you maintain full control over access permissions.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I try CloudCFO.ai before committing?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We offer a 14-day free trial with full access to all features. No credit card required. You can process up to 100 documents during your trial to experience the full power of CloudCFO.ai.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Stop Drowning in Receipts. Start Growing Sustainably.</h2>
+            <p>Let CloudCFO.ai be your 24/7 financial and environmental intelligence partner</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-white">Start Your Free 14-Day Trial</a>
+                <a href="#" class="btn btn-outline-white">Schedule a Demo</a>
+            </div>
+            
+            <div class="trust-badges">
+                <span class="trust-badge">✓ No credit card required</span>
+                <span class="trust-badge">✓ Cancel anytime</span>
+                <span class="trust-badge">✓ GDPR & SOC2 compliant</span>
+                <span class="trust-badge">🌱 Carbon neutral platform</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">AI Technology</a></li>
+                    <li><a href="#">Carbon Accounting 🌱</a></li>
+                    <li><a href="#">Mobile Apps</a></li>
+                    <li><a href="#">WhatsApp Bot</a></li>
+                    <li><a href="#">Telegram Bot</a></li>
+                    <li><a href="#">API Access</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Solutions</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Freelancers</a></li>
+                    <li><a href="#">Small Business</a></li>
+                    <li><a href="#">E-commerce</a></li>
+                    <li><a href="#">Sustainable Business 🌱</a></li>
+                    <li><a href="#">Bookkeepers</a></li>
+                    <li><a href="#">Accountants</a></li>
+                    <li><a href="#">Industries</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Sustainability 🌱</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Carbon Tracking</a></li>
+                    <li><a href="#">ESG Reporting</a></li>
+                    <li><a href="#">Partner Integrations</a></li>
+                    <li><a href="#">Sustainability Blog</a></li>
+                    <li><a href="#">Impact Reports</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                    <li><a href="#">Tax Guide</a></li>
+                    <li><a href="#">API Docs</a></li>
+                    <li><a href="#">Status Page</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our AI Mission</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">GDPR</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© 2024 CloudCFO.ai - AI-Powered Financial & Environmental Intelligence</p>
+                <p style="margin-top: 0.5rem;">
+                    <span style="color: #10b981;">● All Systems Operational</span> | 
+                    <span class="carbon-badge" style="margin-left: 0.5rem;">🌱 Carbon Neutral Operations</span>
+                </p>
+            </div>
+            
+            <div class="footer-socials">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">𝕏</a>
+                <a href="#" class="social-link">▶</a>
+                <a href="#" class="social-link">⚡</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                faqItems.forEach(faq => faq.classList.remove('active'));
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Sticky navigation shadow
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 10) {
+                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
